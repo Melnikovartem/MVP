@@ -2,7 +2,6 @@ import telebot
 import config
 import parser
 from time import sleep
-#могу запарится и сделать так, чтобы не падало каждые 3 дня (примерно), но мне лень парится с самоподписанными сертификатами
 bot = telebot.TeleBot(config.token)
 
 def post(data):
