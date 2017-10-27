@@ -1,21 +1,21 @@
 import telebot
-import confog
+import config
 import parser
 from time import sleep
 #могу запарится и сделать так, чтобы не падало каждые 3 дня (примерно), но мне лень парится с самоподписанными сертификатами
 bot = telebot.TeleBot(config.token)
 
 def post(data):
-    bot.send(config.channel, "Hello")
+    bot.send_message(config.channel, "Hello" + data["text"])
 
 def check():
     all_data = parser.get_posts()
-    last_post_file = open("last_post", "w")
-    last_post = int(last_post_file.read())
+    last_post = int(open("last_post", "r").read())
     if all_data[len(all_data) - 1]["id"] != last_post:
-        last_post_file = all_data[len(all_data) - 1]["id"] 
-        last_post_file.write()
-        for i in list(filter(j>last_post)):
+        #f = open("last_post", "w")
+        #f.write(str(all_data[len(all_data) - 1]["id"]))
+        #f.close()
+        for i in list(filter(lambda x: x["id"]>last_post, all_data)):
             post(i)
 
 if __name__ == "__main__":
