@@ -64,11 +64,10 @@ class Site:
             return lst
 
 
-def get_posts():
+def get_posts(n = 5):
     # your logic
     # last n posts
     # let n = 5
-    n = 5
     return Site('http://lycu1580.mskobr.ru/novosti/', '?p=', 0, n).getlist()
     """
     Output format:

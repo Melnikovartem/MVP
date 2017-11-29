@@ -3,3 +3,4 @@ single_run = True
 #@channel_name
 channel = "@NEWS1580"
 time_sleep = 3600
+db = "data.db"
