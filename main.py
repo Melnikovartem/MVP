@@ -2,6 +2,8 @@ import database as db
 import bot
 from time import sleep, strftime
 import config
+
+# This is 
 while True:
     try:
         db.push()
