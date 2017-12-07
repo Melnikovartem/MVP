@@ -7,7 +7,8 @@ bot = telebot.TeleBot(config.token)
 def send(post):
     return bot.send_message(config.channel, post[0] + "\nЧитать далее:\nhttp://lycu1580.mskobr.ru", reply_markup = message_markup(post[1]))
 
-
+def delete(t_id):
+    bot.delete_message(config.channel, t_id)
 def message_markup(url_ending):
     markup = telebot.types.InlineKeyboardMarkup()
     button = telebot.types.InlineKeyboardButton(text = "Подробнее", url = googl_short("http://lycu1580.mskobr.ru" + url_ending))

@@ -12,9 +12,13 @@ def cycle():
     except Exception as e:
         print("!Error", e)
 
+def clear_all():
+    for t_id in db.tel_pub_pull():
+        bot.delete(t_id)
 if __name__ == "__main__":
     print("Start")
     if config.single_run:
+        clear_all()
         cycle()
         print("End")
     else:

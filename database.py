@@ -15,8 +15,10 @@ def push():
             pass
     conn.commit()
 def pull():
-    return c.execute("SELECT title, link FROM News WHERE pushed = 0").fetchall() 
+    return c.execute("SELECT title, link FROM News WHERE pushed = 0").fetchall()
+def tel_pub_pull():
+    c.execute("UPDATE News SET pushed = 0")
+    return c.execute("SELECT telegram_id FROM News WHERE pushed = 1").fetchall()
 def upd_pull(t_id, link):
-    print(t_id)
     c.execute("UPDATE News SET pushed = 1, telegram_id = '%s' WHERE link = '%s'" % (t_id, link))
     conn.commit()
