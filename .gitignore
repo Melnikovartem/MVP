@@ -99,3 +99,15 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#python basic
+*.pyc
+lib/
+lib64/
+__pycache__
+#virtual env
+*env
+#db
+*.sqlite3
+*.db
+
