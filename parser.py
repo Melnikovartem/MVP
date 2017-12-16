@@ -11,6 +11,8 @@ class xps:
     lbl = '//div[@class="kris-news-tit"]/a/div/text()'
     lnk = '//div[@class="kris-news-tit"]/a/@href'
     dat = '//div[@class="kris-news-data-txt"]/text()'
+    cnt = '//div[@class="kris-redaktor-format"]'
+    cnl = '//div[@class="kris-redaktor-format"]/p/a/@href'
     
 class service: 
     '''
@@ -63,6 +65,18 @@ class Site:
             lst = service.gluelist(lst)
             return lst
 
+def getData(url):
+    src = html.fromstring(request.urlopen(request.Request(url, headers = headers)).read().decode('utf-8'))
+  	linkTag = src.xpath(xps.cnl)
+  	if(len(linkTag) > 0):
+      return getData(linkTag[0])
+	  else:
+	      images = src.xpath('//img/@src')
+	     	textBlock = src.xpath(xps.cnt)[0]
+    		textSrc = []
+    		for i in textBlock:
+   		      textSrc.append((i.text_content().replace('\r','')).replace('\n', '').replace('\t', ''))
+    return ({'text': ''.join(textSrc), 'images': images})          
 
 def get_posts(n = 5):
     # your logic
